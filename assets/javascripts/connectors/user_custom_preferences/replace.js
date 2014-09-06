@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(window).load(function() {
 	setTimeout(replace(), 2000);
 });
 function replace() {
@@ -7,7 +7,7 @@ function replace() {
    var custom_url;
    var user;
    var live_url;
-   user = Discourse.User.current();   
+   user = Discourse.User.current();
    if (user.custom_fields == null) {
             subdomain = "sample"
     } else {
@@ -18,8 +18,5 @@ function replace() {
         }
     }
     custom_url = 'https://' + subdomain + '.monitoringclient.com';
-    live_url = '<a href="' + custom_url + '"> ' + custom_url + '</a>';
-    return $(this).html().replace("app_subdomain", live_url);
-
-});
+    return $(this).html().replace(/noapp_subdomain(\/.*?)(\s|$)/gi, custom_url + "$1" + "$2").replace(/app_subdomain(\/.*?)(\s|$)/gi, '<a href="' + custom_url + "$1" $  });
 }
