@@ -1,5 +1,6 @@
-$(window).load(function() {
-	setTimeout(replace(), 2000);
+$(document).ready(function() {
+  setTimeout(replace(), 4000);
+  Discourse.ClickTrack.trackClick = function() { return false; }
 });
 function replace() {
  $(".cooked p").html(function () {
@@ -7,7 +8,7 @@ function replace() {
    var custom_url;
    var user;
    var live_url;
-   user = Discourse.User.current();
+   user = Discourse.User.current();   
    if (user.custom_fields == null) {
             subdomain = "sample"
     } else {
@@ -18,5 +19,6 @@ function replace() {
         }
     }
     custom_url = 'https://' + subdomain + '.monitoringclient.com';
-    return $(this).html().replace(/noapp_subdomain(\/.*?)(\s|$)/gi, custom_url + "$1" + "$2").replace(/app_subdomain(\/.*?)(\s|$)/gi, '<a href="' + custom_url + "$1" $  });
+    return $(this).html().replace(/app_subdomain(\/.*?)(\s|$)/gi, '<a href="' + custom_url + "$1" + '">' + custom_url + "$1" + '</a>' + "$2");;
+  });
 }
