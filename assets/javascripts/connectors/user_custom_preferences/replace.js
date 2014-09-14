@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  setTimeout(replace(), 4000);
+$(window).load(function() {
+  setTimeout(replace(), 2000);
   Discourse.ClickTrack.trackClick = function() { return false; }
 });
 function replace() {
@@ -19,6 +19,6 @@ function replace() {
         }
     }
     custom_url = 'https://' + subdomain + '.monitoringclient.com';
-    return $(this).html().replace(/app_subdomain(\/.*?)(\s|$)/gi, '<a href="' + custom_url + "$1" + '">' + custom_url + "$1" + '</a>' + "$2");;
+    return $(this).html().replace(/link_url(\/.*?)(\s|$)/gi, '<a targt="_blank" href="' + custom_url + "$1" + '">' + custom_url + "$1" + '</a>' + "$2");;
   });
 }
