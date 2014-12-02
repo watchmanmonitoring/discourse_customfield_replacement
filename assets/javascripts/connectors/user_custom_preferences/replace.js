@@ -3,6 +3,7 @@ $(window).load(function() {
   Discourse.ClickTrack.trackClick = function() { return false; }
 });
 function replace() {
+  try {
   var subdomain;
    var custom_url;
    var user;
@@ -24,4 +25,6 @@ function replace() {
   $(".cooked p").html(function () {
     return $(this).html().replace(/show_url(\/.*?)(\s|$)/gi, custom_url + "$1" + "$2");
   });
+  } catch(err) {
+  }
 }
