@@ -9,7 +9,6 @@ Discourse.View.reopen({
   },
   afterRenderEvent : function(){
     // implement this hook in your own subclasses and run your jQuery logic there
-    console.log("event popped");
     replace();
   }
 });
