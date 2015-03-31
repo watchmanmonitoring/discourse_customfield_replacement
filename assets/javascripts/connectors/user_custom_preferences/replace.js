@@ -1,5 +1,20 @@
+var timer = setInterval(function() {
+    if (($('.list-container').hasClass('hidden')) && (!$('body').hasClass('busy'))) {
+        $('body').addClass('busy');
+        
+        var timer2 = setInterval(function() {
+            if (!$('.list-container').hasClass('hidden')) {
+                // do stuff here
+                replace()
+                
+                clearInterval(timer2);
+                $('body').removeClass('busy');
+            }
+        }, 20);
+    }
+}, 20);
+
 $(window).load(function() {
-  setTimeout(replace(), 2000);
   Discourse.ClickTrack.trackClick = function() { return false; }
 });
 function replace() {
