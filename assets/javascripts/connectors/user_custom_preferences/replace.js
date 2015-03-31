@@ -2,30 +2,18 @@ $(window).load(function() {
   Discourse.ClickTrack.trackClick = function() { return false; }
 });
 
-var myView = Backbone.View.extend({ 
-
-  initialize: function(options) { 
-    _.bindAll(this, 'beforeRender', 'render', 'afterRender'); 
-    var _this = this; 
-    this.render = _.wrap(this.render, function(render) { 
-      render(); 
-      _this.afterRender(); 
-      return _this; 
-    }); 
-  }, 
-  
-  beforeRender: function() { 
-    console.log('beforeRender'); 
-  }, 
-  
-  render: function() { 
-    return this; 
-  }, 
-  
-  afterRender: function() { 
+Discourse.View.reopen({
+  didInsertElement : function(){
+    this._super();
+    Ember.run.scheduleOnce('afterRender', this, this.afterRenderEvent);
+  },
+  afterRenderEvent : function(){
+    // implement this hook in your own subclasses and run your jQuery logic there
+    console.log("event popped");
     replace();
-  } 
+  }
 });
+
 
 function replace() {
   try {
