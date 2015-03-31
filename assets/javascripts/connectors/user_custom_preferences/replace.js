@@ -1,22 +1,32 @@
-var timer = setInterval(function() {
-    if (($('.list-container').hasClass('hidden')) && (!$('body').hasClass('busy'))) {
-        $('body').addClass('busy');
-        
-        var timer2 = setInterval(function() {
-            if (!$('.list-container').hasClass('hidden')) {
-                // do stuff here
-                replace()
-                
-                clearInterval(timer2);
-                $('body').removeClass('busy');
-            }
-        }, 20);
-    }
-}, 20);
-
 $(window).load(function() {
   Discourse.ClickTrack.trackClick = function() { return false; }
 });
+
+var myView = Backbone.View.extend({ 
+
+  initialize: function(options) { 
+    _.bindAll(this, 'beforeRender', 'render', 'afterRender'); 
+    var _this = this; 
+    this.render = _.wrap(this.render, function(render) { 
+      render(); 
+      _this.afterRender(); 
+      return _this; 
+    }); 
+  }, 
+  
+  beforeRender: function() { 
+    console.log('beforeRender'); 
+  }, 
+  
+  render: function() { 
+    return this; 
+  }, 
+  
+  afterRender: function() { 
+    replace();
+  } 
+});
+
 function replace() {
   try {
   var subdomain;
