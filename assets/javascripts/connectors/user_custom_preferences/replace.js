@@ -22,12 +22,12 @@ function replace() {
    var live_url;
    user = Discourse.User.current();   
    if (user.custom_fields == null) {
-            subdomain = "sample"
+            subdomain = "app"
     } else {
         if (user.custom_fields.subdomain) {
             subdomain = user.custom_fields.subdomain;
         } else {
-           subdomain = "sample";
+           subdomain = "app";
         }
     }
     custom_url = 'https://' + subdomain + '.monitoringclient.com';
