@@ -1,6 +1,6 @@
-$(window).load(function() {
+/*$(window).load(function() {
   Discourse.ClickTrack.trackClick = function() { return false; }
-});
+});*/
 
 Discourse.View.reopen({
   didInsertElement : function(){
