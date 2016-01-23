@@ -1,7 +1,8 @@
-# name: Subdomain Replacement
+# name: Custom Field Replacement
 # about: Replaces the subdomain from the custom field
 # version: 0.1
 # authors: Watchman Monitoring
+# url: https://github.com/watchmanmonitoring/discourse_customfield_replacement
 
 DiscoursePluginRegistry.serialized_current_user_fields << "subdomain"
 
